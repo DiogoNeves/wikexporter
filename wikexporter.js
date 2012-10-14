@@ -2,36 +2,29 @@
 var fs = require('fs');
 var path = require('path');
 var wrench = require('wrench');
+var url = require('url');
 var Showdown = require('showdown');
 var converter = new Showdown.converter();
 
-var optimist = require('optimist')
-	.options({
-		// All option keys
-		'r': {
-			alias: 'repo',
-			demand: true,
-			describe: 'GitHub (only) repo where to grab the wiki from (e.g. https://github.com/DiogoNeves/wikexporter.git)'
-		},
-		'd': {
-			alias: 'directory',
-			describe: 'Directory where to put the files !It\'ll be DELETED! Don\'t use a directory you need!',
-			default: 'wiki/'
-		}
-	});
+var program = require('commander')
+	.version('0.0.10')
+	.description('Exports GitHub wiki pages from md to html')
+	.option('-r, --repo <github-repo>', 'GitHub (only) repo where to grab the wiki from (e.g. https://github.com/DiogoNeves/wikexporter.git)')
+	.option('-d, --directory [directory]', 'Directory where to put the files !It\'ll be DELETED! Don\'t use a directory you need!', 'wiki/')
+	.parse(process.argv)
 ;
-var argv = optimist.argv;
+var argv = program;
 
 function argv_fail(msg) {
-	optimist.showHelp();
+	console.error(program.helpInformation());
 	if (msg)
-		console.error('Problem: ' + msg);
+		console.error('  Problem: ' + msg);
 	process.exit(1);
 }
 
 function fail(msg) {
 	if (msg)
-		console.error('Fatal: ' + msg);
+		console.error('  Fatal: ' + msg);
 	process.exit(2);
 }
 
@@ -56,7 +49,8 @@ function convertToHtml(src, dest) {
 }
 
 // validate this is a repo
-var url = require('url').parse(argv.repo);
+if (!argv.repo) argv_fail('You have to set a repository (-r, --repo <github-repo>)');
+var url = url.parse(argv.repo);
 if (url.hostname !== 'github.com') argv_fail('It must be a GitHub repo!');
 if (url.query) argv_fail('Please, only plain repo urls, no queries ;)');
 if (url.href.lastIndexOf('.git') !== (url.href.length - '.git'.length)) argv_fail('That isn\'t a git repo... is it?');

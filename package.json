@@ -9,7 +9,7 @@
 	"main": "./wikexporter.js",
 	"dependencies": {
 		"git-wrapper": "latest",
-		"optimist": "latest",
+		"commander": "latest",
 		"showdown": "latest",
 		"wrench": "latest"
 	},
