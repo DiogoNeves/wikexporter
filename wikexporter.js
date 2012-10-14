@@ -2,6 +2,8 @@
 var fs = require('fs');
 var path = require('path');
 var wrench = require('wrench');
+var Showdown = require('showdown');
+var converter = new Showdown.converter();
 
 var optimist = require('optimist')
 	.options({
@@ -39,7 +41,18 @@ function safe_rmdirSyncRecursive(dir) {
 }
 
 function convertToHtml(src, dest) {
-	
+	fs.readFile(src, 'utf8', function(err, data) {
+		if (err) {
+			console.error('Failed to read "' + src + '"');
+			return;
+		}
+		
+		var html = converter.makeHtml(data);
+		fs.writeFile(dest, html, 'utf8', function(err) {
+			if (err)
+				console.error('Failed to write "' + dest + '"');
+		});
+	});
 }
 
 // validate this is a repo
@@ -95,6 +108,8 @@ git.exec('clone', [wikiRepo, srcDirectory], function(err, stdout) {
 					fs.createReadStream(srcFile).pipe(fs.createWriteStream(destFile));
 				}
 			}
+		} else {
+			console.log('Finished, YEAH! Enjoy your wiki at "' + outDirectory + '"');
 		}
 	});
 });
