@@ -1,0 +1,20 @@
+{
+	"name": "wikexporter",
+	"description": "GitHub wiki exporter (md to html)",
+	"version": "0.0.10",
+	"url": "https://github.com/DiogoNeves/wikexporter",
+	"author": "Diogo Neves <diogo.neves@gmail.com>",
+	
+	"engines": ["node >= 0.8.12"],
+	"main": "./wikexporter.js",
+	"dependencies": {
+		"git-wrapper": "latest",
+		"optimist": "latest",
+		"showdown": "latest",
+		"wrench": "latest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DiogoNeves/wikexporter.git"
+	}
+}
