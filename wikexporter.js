@@ -35,15 +35,21 @@ if (url.href.lastIndexOf('.git') !== (url.href.length - '.git'.length)) argv_fai
 var wikiRepo = argv.repo.substring(0, url.href.lastIndexOf('.git'));
 wikiRepo += '.wiki.git';
 
+// remove any previous grab
+var fs = require('fs');
+if (fs.existsSync('.wiki')) {
+	var wrench = require('wrench');
+	wrench.rmdirSyncRecursive('.wiki', false);
+}
+
 // grab from the github repo provided
 var Git = require('git-wrapper');
 var git = new Git();
 
-var commandArgs = wikiRepo + ' wiki/';
 console.log('Grabbing wiki repo from "' + wikiRepo + '"');
-//git.exec('clone', commandArgs, function(err, stdout) {
-//	if (err)
-//		fail('Failed to clone the wiki repo "' + wikiRepo + '\r\n' + stdout);
-//	
-//	// convert .md files to html
-//});
+git.exec('clone', [wikiRepo, '.wiki/'], function(err, stdout) {
+	if (err)
+		fail('Failed to clone the wiki repo "' + wikiRepo + '\r\n' + stdout);
+	
+	// convert .md files to html
+});
