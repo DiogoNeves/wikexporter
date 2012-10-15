@@ -6,7 +6,7 @@ GitHub's Wiki exporter (md to html)
 ## Instalation
 
 ```bash
-$ npm install wikexporter
+$ npm install -g wikexporter
 # done! ;)
 ```
   
