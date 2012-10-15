@@ -3,6 +3,13 @@
 GitHub's Wiki exporter (md to html)
   
   
+## Instalation
+
+```bash
+$ npm install wikexporter
+# done! ;)
+```
+  
 ## Usage
 
 ```bash
@@ -10,6 +17,25 @@ $ cd /my/project/path/
 $ wikexporter --repo https://github.com/<my_repo>.git
 # and you're done! :)
 ```
+
+This will create (or override) the **wiki/** directory.  
+  
+```bash
+$ wikexporter --help
+  Usage: wikexporter [options]
+
+  Options:
+
+    -h, --help                   output usage information
+    -V, --version                output the version number
+    -r, --repo <github-repo>     GitHub (only) repo where to grab the wiki from (e.g. https://github.com/DiogoNeves/wikexporter.git)
+    -d, --directory [directory]  Directory where to put the files (default: wiki/)
+```
+
+## Development
+
+Please feel free to contribute! :)  
+I'm currently working on supporting more url types and cleaning up the code (yes, it looks awful!)  
 
 ## License 
 
