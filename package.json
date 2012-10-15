@@ -7,11 +7,12 @@
 		"name": "Diogo Neves",
 		"email": "diogo.neves@gmail.com"
 	},
-	
-	"engines": ["node >= 0.8.12"],
+	"engines": [ "node >= 0.8.12" ],
 	"main": "./wikexporter.js",
 	"preferGlobal": "true",
-	"bin": { "wikexporter": "wikexporter.js" }
+	"bin": {
+		"wikexporter": "wikexporter.js"
+	},
 	"dependencies": {
 		"git-wrapper": "latest",
 		"commander": "latest",

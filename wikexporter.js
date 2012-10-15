@@ -10,7 +10,7 @@ var program = require('commander')
 	.version('0.0.10')
 	.description('Exports GitHub wiki pages from md to html')
 	.option('-r, --repo <github-repo>', 'GitHub (only) repo where to grab the wiki from (e.g. https://github.com/DiogoNeves/wikexporter.git)')
-	.option('-d, --directory [directory]', 'Directory where to put the files !It\'ll be DELETED! Don\'t use a directory you need!', 'wiki/')
+	.option('-d, --directory [directory]', 'Directory where to put the files (default: wiki/)', 'wiki/')
 	.parse(process.argv)
 ;
 var argv = program;
@@ -75,7 +75,10 @@ function grabAndConvertWiki() {
 					}
 				}
 			} else {
-				console.log('Finished, YEAH! Enjoy your wiki at "' + outDirectory + '"');
+				console.log('========');
+				console.log('Finished');
+				console.log('YEAH! Enjoy your wiki at "' + outDirectory + '"');
+				console.log('========');
 			}
 		});
 	});
