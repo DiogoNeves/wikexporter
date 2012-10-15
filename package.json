@@ -1,0 +1,35 @@
+{
+	"name": "wikexporter",
+	"description": "GitHub wiki exporter (md to html)",
+	"version": "0.0.10",
+	"url": "https://github.com/DiogoNeves/wikexporter",
+	"author": {
+		"name": "Diogo Neves",
+		"email": "diogo.neves@gmail.com"
+	},
+	"engines": [ "node >= 0.8.12" ],
+	"main": "./wikexporter.js",
+	"preferGlobal": "true",
+	"bin": {
+		"wikexporter": "wikexporter.js"
+	},
+	"dependencies": {
+		"git-wrapper": "latest",
+		"commander": "latest",
+		"showdown": "latest",
+		"wrench": "latest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DiogoNeves/wikexporter.git"
+	},
+	"bugs": {
+		"url": "https://github.com/DiogoNeves/wikexporter/issues"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "https://github.com/DiogoNeves/wikexporter/blob/master/MIT-LICENSE.txt"
+		}
+	]
+}
